@@ -95,11 +95,11 @@ describe('updateKeyName()', function () {
     function () {
         expect(updated3[0]).to.haveOwnProperty("nutrition");
         expect(updated3[0]).to.not.haveOwnProperty("nutritions");
-        expect(updated3[0].nutrition).to.haveOwnProperty("protein");
+         expect(updated3[0].nutrition).to.haveOwnProperty("protein");
 
         expect(updated3[16]).to.haveOwnProperty("nutrition");
         expect(updated3[16]).to.not.haveOwnProperty("nutritions");
-        expect(updated3[16].nutrition).to.haveOwnProperty("protein");
+         expect(updated3[16].nutrition).to.haveOwnProperty("protein");
     });
 });
 

@@ -9,7 +9,10 @@ console.log(addKeyAndValueToAll(fruits, "inStock", true));
 */
 
 function addKeyAndValueToAll(array, key, value) {
-    // Your code here
+    for (const fruit of array) {
+        fruit[key] = value;
+    }
+    return array;
 }
 
 /* 08. `addKeyAndValueToOne()` - Return object at the given index array, adding the given key and
@@ -20,8 +23,12 @@ console.log(addKeyAndValueToOne(fruits, "color", "red", 1));
 */
 
 function addKeyAndValueToOne(array, key, value, index) {
-    // Your code here
+    let obj = array[index];
+     obj[key] = value;
+     return obj;
+
 }
+
 
 /* 09. `updateKeyName()` - Change the old key name to the new key name in all
 objects, and return the resulting array.
@@ -32,7 +39,12 @@ console.log(updateKeyName(fruits, "nutritions", "nutrition"));
 */
 
 function updateKeyName(array, oldKey, newKey) {
-    // Your code here
+    for (const fruit of array) {
+        let clone = {...fruit[oldKey]};
+        fruit[newKey] = clone;
+        delete fruit[oldKey];
+    }
+    return array;
 }
 
 /* 10. `updateIdValues()` - Change all of the "id" values to six-character
@@ -49,9 +61,22 @@ console.log(updateIdValues(fruits));
 */
 
 function updateIdValues(array) {
-    // Your code here
+    let newArr = [];
+    for (const fruit of array) {
+        newArr.push(fruit.id);
+    }
+   return newArr.map((num) => makeString(num));
 }
-
+const makeString = (num) => {
+    let string = '000000';
+    let copy = num.toString();
+    let split = string.split('');
+    for (let i = 0; i < copy.length; i++) {
+        split.pop();
+    }
+    return split.join('') + copy;
+}
+console.log(updateIdValues(fruits));
 /* 11. `deleteKeysandValues()` - Delete the keyToDelete from the nutritions
 object from every fruit, and return the array.
 
@@ -60,9 +85,12 @@ console.log(deleteKeysAndValues(fruits, "sugar"));
 */
 
 function deleteKeysAndValues(array, keyToDelete) {
-    // Your code here
+    for (const fruit of array) {
+        delete fruit['nutritions'][keyToDelete];
+    }
+    return array;
 }
-
+console.log(deleteKeysAndValues(fruits, "sugar"));
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 
 module.exports = [ addKeyAndValueToAll, addKeyAndValueToOne, updateKeyName, updateIdValues, deleteKeysAndValues ];
